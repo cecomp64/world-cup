@@ -1,4 +1,6 @@
 WorldCup::Application.routes.draw do
+  resources :groups
+
   resources :matchups
 
   resources :teams
