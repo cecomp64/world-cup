@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Homescore:</strong>
+  <%= @matchup.homeScore %>
+</p>
+
+<p>
+  <strong>Awayscore:</strong>
+  <%= @matchup.awayScore %>
+</p>
+
+<p>
+  <strong>Final:</strong>
+  <%= @matchup.final %>
+</p>
+
+<%= link_to 'Edit', edit_matchup_path(@matchup) %> |
+<%= link_to 'Back', matchups_path %>
