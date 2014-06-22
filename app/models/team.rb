@@ -3,6 +3,8 @@ class Team < ActiveRecord::Base
   has_many :matchups, 
            :finder_sql => "select m.* from matchups m where m.home_id = id or m.away_id = id"
 
+  has_and_belongs_to_many :groups
+
   # Get constants
   #helper :all
   include ApplicationHelper
