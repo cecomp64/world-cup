@@ -19,4 +19,5 @@
 *.swp
 *.swo
 
-Gemfile
+/Gemfile
+/Gemfile.lock
