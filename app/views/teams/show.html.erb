@@ -19,6 +19,17 @@
   <strong>Name:</strong>
   <%= @team.name %>
 </p>
-
+<p>
+  <strong>Goals For:</strong>
+  <%= @team.goals_for %>
+</p>
+<p>
+  <strong>Goals Against:</strong>
+  <%= @team.goals_against %>
+</p>
+<p>
+  <strong>Goal Differential:</strong>
+  <%= @team.goal_differential %>
+</p>
 <%= link_to 'Edit', edit_team_path(@team) %> |
 <%= link_to 'Back', teams_path %>

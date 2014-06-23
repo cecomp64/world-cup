@@ -1,0 +1,12 @@
+
+    <% groups.each do |group| %>
+      <p>
+        <strong>Group <%= group.name.capitalize %></strong>
+        <%= link_to 'Show', group %> | 
+        <%= link_to 'Edit', edit_group_path(group) %> | 
+        <%= link_to 'Destroy', group, method: :delete, data: { confirm: 'Are you sure?' } %>
+      </p>
+      <%= render partial: 'teams/teams', object: group.teams.sort_by(&:name) %>
+    <% end %>
+
+

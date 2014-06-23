@@ -3,9 +3,7 @@
 <table>
   <thead>
     <tr>
-      <th>Homescore</th>
-      <th>Awayscore</th>
-      <th>Final</th>
+      <th>Matchup</th>
       <th></th>
       <th></th>
       <th></th>
@@ -15,12 +13,16 @@
   <tbody>
     <% @matchups.each do |matchup| %>
       <tr>
-        <td><%= matchup.homeScore %></td>
-        <td><%= matchup.awayScore %></td>
-        <td><%= matchup.final %></td>
-        <td><%= link_to 'Show', matchup %></td>
-        <td><%= link_to 'Edit', edit_matchup_path(matchup) %></td>
-        <td><%= link_to 'Destroy', matchup, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% if matchup.final %>
+          <td>
+          <%= matchup.home_team.name  %>
+            (<%= matchup.homeScore %> - <%= matchup.awayScore %>)
+            <%= matchup.away_team.name %>
+          </td>
+          <td><%= link_to 'Show', matchup %></td>
+          <td><%= link_to 'Edit', edit_matchup_path(matchup) %></td>
+          <td><%= link_to 'Destroy', matchup, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>

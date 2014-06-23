@@ -1,7 +1,7 @@
 class Team < ActiveRecord::Base
   # Team.matchups, Team.matchups << Matchup, Team.matchups.find
   has_many :matchups, 
-           :finder_sql => "select m.* from matchups m where m.home_id = id or m.away_id = id"
+           :finder_sql => proc {"select distinct m.* from matchups m, teams t where m.home_id = #{id} or m.away_id = #{id}"}
 
   has_and_belongs_to_many :groups
 
@@ -9,8 +9,17 @@ class Team < ActiveRecord::Base
   #helper :all
   include ApplicationHelper
 
-  def ==(other_team)
-    self.name == other_team.name
+  #def ==(other_team)
+  #  self.name == other_team.name
+  #end
+
+  def updateResults(match)
+    result = match.result(self)
+    self.wins += (result == "WIN" ? 1 : 0)
+    self.loss += (result == "LOSS" ? 1 : 0)
+    self.ties += (result == "TIE" ? 1 : 0)
+    self.goals_for += match.goals_for(self)
+    self.goals_against += match.goals_against(self)
   end
 
   # Tally all the results for this team's matchups
@@ -18,13 +27,12 @@ class Team < ActiveRecord::Base
     self.wins = 0
     self.loss = 0
     self.ties = 0
+    self.goals_for = 0
+    self.goals_against = 0
 
     self.matchups.each do |match|
       if match.final
-        result = match.result(self)
-        self.wins += (result == RESULTS[:Win] ? 1 : 0)
-        self.loss += (result == RESULTS[:Lose] ? 1 : 0)
-        self.ties += (result == RESULTS[:Tie] ? 1 : 0)
+        updateResults(match)
       end
     end
 
@@ -32,4 +40,7 @@ class Team < ActiveRecord::Base
     self.save
   end
 
+  def goal_differential
+    return (self.goals_for - self.goals_against)
+  end
 end

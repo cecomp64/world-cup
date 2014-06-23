@@ -69,6 +69,7 @@ class MatchupsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def matchup_params
-      params.require(:matchup).permit(:homeScore, :awayScore, :final)
+      params.require(:matchup).permit(:homeScore, :awayScore, :final, :home_id, :away_id)
     end
+
 end

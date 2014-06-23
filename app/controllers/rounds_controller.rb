@@ -10,6 +10,7 @@ class RoundsController < ApplicationController
   # GET /rounds/1
   # GET /rounds/1.json
   def show
+    @groups = @round.groups
   end
 
   # GET /rounds/new

@@ -5,5 +5,11 @@
   <%= @round.name %>
 </p>
 
+<% @groups.each do |group| %>
+<p>
+  <strong>Group:</strong> <%= group.name %>
+</p>
+<% end %>
+
 <%= link_to 'Edit', edit_round_path(@round) %> |
 <%= link_to 'Back', rounds_path %>

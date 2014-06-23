@@ -12,6 +12,15 @@
   <% end %>
 
   <div class="field">
+    <%= f.label :home_id %><br>
+    <%= f.select :home_id, Team.all.sort_by(&:name).map {|a| [a.name.capitalize, a.id]} %>
+  </div>
+  <div class="field">
+    <%= f.label :away_id %><br>
+    <%= f.select :away_id, Team.all.sort_by(&:name).map {|a| [a.name.capitalize, a.id]} %>
+  </div>
+
+  <div class="field">
     <%= f.label :homeScore %><br>
     <%= f.text_field :homeScore %>
   </div>
@@ -21,7 +30,8 @@
   </div>
   <div class="field">
     <%= f.label :final %><br>
-    <%= f.text_field :final %>
+    <%= f.hidden_field :final, :value => true %>
+    True
   </div>
   <div class="actions">
     <%= f.submit %>

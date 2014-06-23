@@ -1,0 +1,10 @@
+<table>
+  <%= render partial: 'teams/team_heading' %>
+  <tbody>
+    <% teams.each do |team| %>
+      <%= render partial: 'teams/team', object: team %>
+    <% end %>
+  </tbody>
+</table>
+
+
