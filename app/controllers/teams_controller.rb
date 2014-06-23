@@ -37,6 +37,16 @@ class TeamsController < ApplicationController
     end
   end
 
+  def recompute_standings
+    teams = Team.find(:all)
+    teams.each do |team|
+      team.computeResults
+    end
+
+    @teams = Team.all.sort_by &:name
+    render 'index'
+  end
+
   # PATCH/PUT /teams/1
   # PATCH/PUT /teams/1.json
   def update
