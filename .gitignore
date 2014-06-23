@@ -18,3 +18,5 @@
 # Ignore VIM
 *.swp
 *.swo
+
+Gemfile
