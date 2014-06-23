@@ -44,6 +44,10 @@ class Team < ActiveRecord::Base
   end
 
   def goal_differential
-    return (self.goals_for - self.goals_against)
+    if (self.goals_for != nil and self.goals_against != nil)
+      return (self.goals_for - self.goals_against)
+    else
+      return 0
+    end
   end
 end
