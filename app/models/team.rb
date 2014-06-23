@@ -14,12 +14,15 @@ class Team < ActiveRecord::Base
   #end
 
   def updateResults(match)
-    result = match.result(self)
-    self.wins += (result == "WIN" ? 1 : 0)
-    self.loss += (result == "LOSS" ? 1 : 0)
-    self.ties += (result == "TIE" ? 1 : 0)
-    self.goals_for += match.goals_for(self)
-    self.goals_against += match.goals_against(self)
+    # TODO: Make wins/loss/ties be 0 by default
+    if (self.wins != nil)
+      result = match.result(self)
+      self.wins += (result == "WIN" ? 1 : 0)
+      self.loss += (result == "LOSS" ? 1 : 0)
+      self.ties += (result == "TIE" ? 1 : 0)
+      self.goals_for += match.goals_for(self)
+      self.goals_against += match.goals_against(self)
+    end
   end
 
   # Tally all the results for this team's matchups
