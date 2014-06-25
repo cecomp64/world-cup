@@ -13,7 +13,7 @@
   <tbody>
     <% @rounds.each do |round| %>
       <tr>
-        <td><%= round.name %></td>
+        <td><%= round.name.downcase.capitalize %> Round</td>
         <td><%= link_to 'Show', round %></td>
         <td><%= link_to 'Edit', edit_round_path(round) %></td>
         <td><%= link_to 'Destroy', round, method: :delete, data: { confirm: 'Are you sure?' } %></td>

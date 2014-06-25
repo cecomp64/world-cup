@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140623015257) do
+ActiveRecord::Schema.define(version: 20140625035014) do
 
   create_table "groups", force: true do |t|
     t.datetime "created_at"
@@ -33,6 +33,7 @@ ActiveRecord::Schema.define(version: 20140623015257) do
     t.boolean  "final"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "round_id"
   end
 
   create_table "rounds", force: true do |t|
@@ -50,6 +51,7 @@ ActiveRecord::Schema.define(version: 20140623015257) do
     t.datetime "updated_at"
     t.integer  "goals_for"
     t.integer  "goals_against"
+    t.integer  "points"
   end
 
 end

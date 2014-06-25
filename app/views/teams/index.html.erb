@@ -1,5 +1,7 @@
 <h1>World Cup Teams</h1>
 
+<% @partial_edit = 1 %>
+<%= render partial: 'key', object: @teams %>
 <%= render partial: 'teams', object: @teams %>
 <br>
 

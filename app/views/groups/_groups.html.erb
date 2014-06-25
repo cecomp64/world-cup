@@ -2,11 +2,33 @@
     <% groups.each do |group| %>
       <p>
         <strong>Group <%= group.name.capitalize %></strong>
+        <% if ((defined? @partial_edit) and (@partial_edit == 1)) %>
         <%= link_to 'Show', group %> | 
         <%= link_to 'Edit', edit_group_path(group) %> | 
         <%= link_to 'Destroy', group, method: :delete, data: { confirm: 'Are you sure?' } %>
+        <% end %>
       </p>
       <%= render partial: 'teams/teams', object: group.teams.sort_by(&:name) %>
+      <% if (not defined? @round)
+           @round = Round.find(group.round_id)
+         end
+         @winner = @round.group_winner(group)
+         @runnerup = @round.group_runnerup(group)
+         @winner = (@winner == nil) ? "" : @winner.name
+         @runnerup = (@runnerup == nil) ? "" : @runnerup.name
+      %>
+
+    <table>
+      <tr class="winner">
+        <td><strong>Winner</strong></td>
+        <td><%= @winner %></td>
+      <tr>
+        <td>Runnerup</td>
+        <td><%= @runnerup %></td>
+      </tr>
+    </table>
+          
+          
     <% end %>
 
 

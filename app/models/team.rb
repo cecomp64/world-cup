@@ -22,6 +22,7 @@ class Team < ActiveRecord::Base
       self.ties += (result == "TIE" ? 1 : 0)
       self.goals_for += match.goals_for(self)
       self.goals_against += match.goals_against(self)
+      compute_points
     end
   end
 
@@ -38,6 +39,8 @@ class Team < ActiveRecord::Base
         updateResults(match)
       end
     end
+    
+    compute_points
 
     # TODO: Handle error
     self.save
@@ -49,5 +52,12 @@ class Team < ActiveRecord::Base
     else
       return 0
     end
+  end
+
+  def compute_points
+    pts = 0
+    pts += (self.wins != nil) ? 3 * self.wins : 0
+    pts += (self.ties != nil) ? self.ties : 0
+    self.points = pts
   end
 end

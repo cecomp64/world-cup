@@ -1,15 +1,12 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @round.name %>
-</p>
-
-<% @groups.each do |group| %>
-<p>
-  <strong>Group:</strong> <%= group.name %>
-</p>
-<% end %>
+<h1>
+  Round <%= @round.name.downcase.capitalize %>
+</h1>
 
 <%= link_to 'Edit', edit_round_path(@round) %> |
 <%= link_to 'Back', rounds_path %>
+
+<%= render partial: 'teams/key', object: @teams %>
+<% @partial_edit = 0 %>
+<%= render partial: 'groups/groups', object: @groups %>
