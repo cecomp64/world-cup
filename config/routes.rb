@@ -9,6 +9,8 @@ WorldCup::Application.routes.draw do
 
   match '/recompute', to: 'teams#recompute_standings', via: 'get', as: 'recompute_standings'
 
+  root 'rounds#index'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

@@ -33,6 +33,7 @@ class Team < ActiveRecord::Base
     self.ties = 0
     self.goals_for = 0
     self.goals_against = 0
+    self.points = 0
 
     self.matchups.each do |match|
       if match.final
@@ -40,8 +41,6 @@ class Team < ActiveRecord::Base
       end
     end
     
-    compute_points
-
     # TODO: Handle error
     self.save
   end
