@@ -9,6 +9,8 @@ class Matchup < ActiveRecord::Base
              :class_name => "Team",
              :foreign_key => "away_id"
 
+  has_and_belongs_to_many :stats
+
   before_save :update_teams
   # Get constants
   include ApplicationHelper
